@@ -10,7 +10,7 @@ gem "railties"
 gem "sprockets-rails"
 
 # Use Puma as the app server
-gem "puma"
+gem "puma", ">= 5.5.1"
 
 # Use SCSS for stylesheets
 gem "sass-rails"
