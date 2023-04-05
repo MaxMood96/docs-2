@@ -6,10 +6,10 @@ ruby File.read(".ruby-version").strip
 source "https://rubygems.org"
 
 # Choo choo 🚝 (only include the Rails gems we need)
-gem "actionpack", "~> 6.0"
-gem "actionview", "~> 6.0"
-gem "activesupport", "~> 6.0"
-gem "railties", "~> 6.0"
+gem "actionpack", "~> 6.1", ">= 6.1.7.3"
+gem "actionview", "~> 6.1", ">= 6.1.7.3"
+gem "activesupport", "~> 6.1", ">= 6.1.7.3"
+gem "railties", "~> 6.1", ">= 6.1.7.3"
 gem "sprockets-rails"
 
 # Use Puma as the app server
@@ -31,7 +31,7 @@ gem "stringex"
 gem "redcarpet"
 
 # Parsing markdown
-gem "commonmarker"
+gem "commonmarker", ">= 0.23.7"
 
 # Syntax highlighting code
 gem "rouge", "3.3.0"
