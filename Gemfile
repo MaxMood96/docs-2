@@ -40,7 +40,7 @@ gem "rouge", "3.3.0"
 gem "escape_utils"
 
 # One rails log line per request, instead of enraging quantity
-gem "lograge"
+gem "lograge", ">= 0.13.0"
 
 # Error reporting
 gem "bugsnag"
