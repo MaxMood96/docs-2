@@ -6,10 +6,10 @@ ruby File.read(".ruby-version").strip
 source "https://rubygems.org"
 
 # Choo choo 🚝 (only include the Rails gems we need)
-gem "actionpack", "~> 6.1"
-gem "actionview", "~> 6.0"
-gem "activesupport", "~> 6.1"
-gem "railties", "~> 6.0"
+gem "actionpack", "~> 6.1", ">= 6.1.7.5"
+gem "actionview", "~> 6.1", ">= 6.1.7.5"
+gem "activesupport", "~> 6.1", ">= 6.1.7.5"
+gem "railties", "~> 6.1", ">= 6.1.7.5"
 gem "sprockets-rails"
 
 # Use Puma as the app server
@@ -40,7 +40,7 @@ gem "rouge", "3.3.0"
 gem "escape_utils"
 
 # One rails log line per request, instead of enraging quantity
-gem "lograge"
+gem "lograge", ">= 0.13.0"
 
 # Error reporting
 gem "bugsnag"
@@ -51,7 +51,7 @@ gem 'front_matter_parser'
 gem 'matrix'
 
 # Asset compilation
-gem 'vite_rails'
+gem 'vite_rails', '>= 3.0.15'
 
 # No page reloads
 gem 'turbo-rails'
@@ -75,7 +75,7 @@ end
 
 group :test do
   # Who doesn't love tests!?
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 6.0.0"
 
   # We want junit output so we can annotate the build
   gem "rspec_junit_formatter"
@@ -85,5 +85,5 @@ group :test do
 end
 
 group :test do
-  gem "buildkite-test_collector"
+  gem "buildkite-test_collector", ">= 2.1.0"
 end
