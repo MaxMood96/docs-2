@@ -6,10 +6,10 @@ ruby File.read(".ruby-version").strip
 source "https://rubygems.org"
 
 # Choo choo 🚝 (only include the Rails gems we need)
-gem "actionpack", "~> 6.1"
+gem "actionpack", "~> 7.1", ">= 7.1.0"
 gem "actionview", "~> 6.0"
 gem "activesupport", "~> 6.1"
-gem "railties", "~> 6.0"
+gem "railties", "~> 7.1", ">= 7.1.0"
 
 # Use Puma as the app server
 gem "puma"
@@ -33,7 +33,7 @@ gem "rouge", "3.3.0"
 gem "escape_utils"
 
 # One rails log line per request, instead of enraging quantity
-gem "lograge"
+gem "lograge", ">= 0.13.0"
 
 # Error reporting
 gem "bugsnag"
@@ -44,7 +44,7 @@ gem 'front_matter_parser'
 gem 'matrix'
 
 # Asset compilation
-gem 'vite_rails'
+gem 'vite_rails', '>= 3.0.15'
 
 # No page reloads
 gem 'turbo-rails'
@@ -60,14 +60,14 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling `console` anywhere in the code.
-  gem "web-console"
+  gem "web-console", ">= 4.2.1"
   gem "pry"
   gem 'graphql-client'
 end
 
 group :test do
   # Who doesn't love tests!?
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 6.0.0"
 
   # We want junit output so we can annotate the build
   gem "rspec_junit_formatter"
