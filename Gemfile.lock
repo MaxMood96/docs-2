@@ -168,7 +168,7 @@ DEPENDENCIES
   buildkite-test_collector
   byebug
   capybara
-  commonmarker
+  commonmarker (>= 0.23.10)
   dotenv-rails
   escape_utils
   foreman
@@ -190,7 +190,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.1.4p223
+   ruby 2.7.8p225
 
 BUNDLED WITH
    2.4.7

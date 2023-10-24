@@ -24,7 +24,7 @@ gem "stringex"
 gem "redcarpet"
 
 # Parsing markdown
-gem "commonmarker"
+gem "commonmarker", ">= 0.23.10"
 
 # Syntax highlighting code
 gem "rouge", "3.3.0"
