@@ -12,7 +12,7 @@ gem "activesupport", "~> 6.1"
 gem "railties", "~> 6.0"
 
 # Use Puma as the app server
-gem "puma"
+gem "puma", ">= 5.6.9"
 
 # Helps with running the server locally
 gem "foreman"
