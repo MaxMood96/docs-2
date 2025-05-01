@@ -77,5 +77,5 @@ group :test do
 end
 
 group :test do
-  gem "buildkite-test_collector"
+  gem "buildkite-test_collector", ">= 2.5.0"
 end
