@@ -9,7 +9,7 @@ source "https://rubygems.org"
 gem "actionpack", "~> 8.0.1"
 gem "actionview", "~> 8.0.1"
 gem "activesupport", "~> 8.0.1"
-gem "railties", "~> 8.0.1"
+gem "railties", "~> 8.0.2"
 
 # Use Puma as the app server
 gem "puma"
@@ -33,7 +33,7 @@ gem "rouge", "3.30.0"
 gem "escape_utils"
 
 # One rails log line per request, instead of enraging quantity
-gem "lograge"
+gem "lograge", ">= 0.13.0"
 
 # Error reporting
 gem "bugsnag"
@@ -47,7 +47,7 @@ gem 'matrix'
 gem 'vite_rails'
 
 # No page reloads
-gem 'turbo-rails'
+gem 'turbo-rails', '>= 2.0.12'
 
 # Sitemap
 gem 'sitemap_generator'
@@ -55,7 +55,7 @@ gem 'sitemap_generator'
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem "dotenv-rails"
+  gem "dotenv-rails", ">= 3.0.0"
 end
 
 group :development do
@@ -67,7 +67,7 @@ end
 
 group :test do
   # Who doesn't love tests!?
-  gem "rspec-rails"
+  gem "rspec-rails", ">= 8.0.0"
 
   # We want junit output so we can annotate the build
   gem "rspec_junit_formatter"
