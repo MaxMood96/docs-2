@@ -132,10 +132,13 @@ In Buildkite Pipelines, each step runs in a fresh workspace on potentially diffe
 
 Options for sharing state between steps:
 
+- **[Build metadata](/docs/pipelines/configure/build-meta-data):** Key-value pairs using `buildkite-agent meta-data set/get`. Use metadata for small values that later steps need to read, such as a version string, a commit hash, or a feature flag.
+- **[Buildkite artifacts](/docs/pipelines/configure/artifacts):** Upload build artifacts from one step for use in subsequent steps. Use artifacts for files like test results, generated configs, or build outputs.
 - **Reinstall per step:** Simple for fast-installing dependencies like `npm ci`.
-- **Buildkite artifacts:** Upload [build artifacts](/docs/pipelines/configure/artifacts) from one step for use in subsequent steps. Best for small files and build outputs.
 - **Cache plugin:** Similar to `actions/cache`, use the [Buildkite cache plugin](https://buildkite.com/resources/plugins/buildkite-plugins/cache-buildkite-plugin/) for larger dependencies using cloud storage (S3, GCS).
 - **External storage:** Custom solutions for complex state management.
+
+If you need to pass data to a build in a _different_ pipeline, use environment variables on a [trigger step](/docs/pipelines/configure/step-types/trigger-step), since metadata and artifacts are scoped to a single build.
 
 ### Agent targeting
 
