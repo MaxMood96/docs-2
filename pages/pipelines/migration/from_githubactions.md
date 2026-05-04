@@ -44,7 +44,7 @@ See the [Security](/docs/pipelines/security) and [Secrets](/docs/pipelines/secur
 
 Like GitHub Actions, Buildkite Pipelines lets you define pipelines in the web interface or in files checked into a repository. The equivalent of `.github/workflows/*.yml` is a `pipeline.yml` (typically in `.buildkite/`). See [Files and syntax](#pipeline-translation-fundamentals-files-and-syntax) for details.
 
-In GitHub Actions, the core description of work is a _workflow_ containing _jobs_, each with multiple _steps_. In Buildkite Pipelines, a [_pipeline_](/docs/pipelines/glossary#pipeline) is the core description of work. A Buildkite "step" is equivalent to a GitHub Actions "job", not a GitHub Actions "step". Each Buildkite step gets its own agent and workspace, potentially on a different machine. Routing is per-step, not per-job.
+In GitHub Actions, the core description of work is a _workflow_ containing _jobs_, each with multiple _steps_. In Buildkite Pipelines, a [_pipeline_](/docs/pipelines/glossary#pipeline) is the core description of work. A Buildkite step is equivalent to a GitHub Actions job, not a GitHub Actions step. Each Buildkite step gets its own agent and workspace, potentially on a different machine. Routing is per-step, not per-job.
 
 The following table maps key concepts between the two platforms:
 
@@ -54,7 +54,7 @@ The following table maps key concepts between the two platforms:
 | Step | Single unit of work, runs on its own agent | A GitHub Actions **job** (not a step) |
 | Agent | Build runner, polls for work | Runner |
 | Queue | Named group of agents for routing | Runner labels (`runs-on:`) |
-| `pipeline upload` | Injects new steps into a running build | No equivalent. GitHub Actions workflows are static once triggered. |
+| `pipeline upload` | Injects new steps into a running build | No equivalent—GitHub Actions workflows are static once triggered. |
 | Trigger step | Starts a build on a different pipeline | `workflow_dispatch` / `repository_dispatch` |
 | Build metadata | Key-value pairs any step can read/write | Job outputs, but global across the build |
 | Plugin | Reusable hook package | Action from the marketplace |
