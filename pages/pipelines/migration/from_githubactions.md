@@ -54,7 +54,7 @@ The following table maps key concepts between the two platforms:
 | Step | Single unit of work, runs on its own agent | A GitHub Actions **job** (not a step) |
 | Agent | Build runner, polls for work | Runner |
 | Queue | Named group of agents for routing | Runner labels (`runs-on:`) |
-| `pipeline upload` | Injects new steps into a running build | No equivalent. GitHub Actions workflows are static once triggered. |
+| `pipeline upload` | Injects new steps into a running build | No equivalent—GitHub Actions workflows are static once triggered. |
 | Trigger step | Starts a build on a different pipeline | `workflow_dispatch` / `repository_dispatch` |
 | Build metadata | Key-value pairs any step can read/write | Job outputs, but global across the build |
 | Plugin | Reusable hook package | Action from the marketplace |
