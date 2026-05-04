@@ -28,6 +28,8 @@ To use this script, save it to the `.buildkite/` directory inside your repositor
 
 When the pipeline's build commences, this step executes the script and pipes the output to the `buildkite-agent pipeline upload` command. The upload command then inserts the steps from the script into the build immediately after this upload step.
 
+Any running job in a build can call `buildkite-agent pipeline upload` to add new steps, multiple jobs can call it within the same build, and a single job can call it more than once. Default service quotas apply (500 jobs created per upload, 500 uploads per build, and 4,000 jobs per build), and these limits can be raised on request. For details, see [Pipelines limits](/docs/platform/limits#pipelines-limits).
+
 > 📘 Step ordering in the Buildkite interface
 > If you run the pipeline upload step multiple times in a _single command step_ (for example, by running a script file from a command step, in which the script runs the pipeline upload step multiple times), then each batch of uploaded steps will appear in reverse order in the Buildkite interface, such as the **Pipeline** view (in the sidebar) or **Table** view of the [new build page](/docs/pipelines/build-page), as well as the **Jobs** view of the classic build page, since the upload command inserts its steps immediately after the upload step.
 > To avoid each of your dynamically-generated pipeline upload steps appearing in reverse order, define each of these upload steps in reverse order—that is, the steps being run as part of an upload step that you want to run first should be defined last. Alternatively, you can define explicit dependencies using the `depends_on` field.
@@ -61,6 +63,18 @@ Each team defines their steps in `team-steps.yml`. Your templating logic is in `
 In `enforce-rules.sh` you can add steps to the YAML, require certain versions of dependencies or plugins, or implement any other logic you can program. Depending on your use case, you might want to get `enforce-rules.sh` from an external catalog instead of committing it to the team repository.
 
 See how [Hasura.io](https://hasura.io) used [dynamic templates and pipelines](https://hasura.io/blog/what-we-learnt-by-migrating-from-circleci-to-buildkite/#dynamic-pipelines) to replace their YAML configuration with Go and some shell scripts.
+
+## When to use dynamic pipelines
+
+Buildkite Pipelines supports several approaches to varying what runs in a build, ranging from fully static configuration through to fully dynamic step generation. The right approach depends on how much the build needs to change based on runtime information.
+
+- **Static YAML**: Use when the pipeline runs the same steps every time, with at most branch-level `if:` conditions for variation. This is the simplest approach and requires no scripting.
+
+- **Conditional step execution with `if_changed`**: Use when steps should only run when relevant files change. Add glob patterns to a step definition, and the Buildkite agent compares them against the Git diff at upload time, excluding steps where nothing matched. See [Using if_changed](/docs/pipelines/configure/dynamic-pipelines/if-changed) for agent version requirements and supported syntax.
+
+- **Monorepo diff plugin**: Use when directory-level change detection is sufficient and you want declarative configuration without scripting. The [Monorepo diff plugin](https://buildkite.com/resources/plugins/buildkite-plugins/monorepo-diff-buildkite-plugin/) watches for changes within directories and triggers separate pipelines for each match, rather than composing steps within a single build. See [Working with monorepos](/docs/pipelines/best-practices/working-with-monorepos).
+
+- **Dynamic generation**: Use when the steps themselves need to change based on runtime information. A generator script runs as a build step, looks at whatever context it needs (such as file changes, dependency graphs, API responses, or shared configuration), and uploads the right steps for that specific build. This is the most flexible approach.
 
 ## Buildkite SDK
 
