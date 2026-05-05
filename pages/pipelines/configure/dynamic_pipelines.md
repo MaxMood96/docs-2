@@ -28,7 +28,7 @@ To use this script, save it to the `.buildkite/` directory inside your repositor
 
 When the pipeline's build commences, this step executes the script and pipes the output to the `buildkite-agent pipeline upload` command. The upload command then inserts the steps from the script into the build immediately after this upload step.
 
-Any running job in a build can call `buildkite-agent pipeline upload` to add new steps, multiple jobs can call it within the same build, and a single job can call it more than once. Buildkite Pipelines applies default service quotas of 500 jobs per upload, 500 uploads per build, and 4,000 jobs per build. You can request to raise these limits. For details, see [Pipelines limits](/docs/platform/limits#pipelines-limits).
+Any running job in a build can call `buildkite-agent pipeline upload` to add new steps, multiple jobs can call it within the same build, and a single job can call it more than once. Buildkite Pipelines applies default service quotas of 500 jobs per upload, 500 uploads per build, and 4,000 jobs per build. Learn more in [Pipelines limits](/docs/platform/limits#pipelines-limits).
 
 > 📘 Step ordering in the Buildkite interface
 > If you run the pipeline upload step multiple times in a _single command step_ (for example, by running a script file from a command step, in which the script runs the pipeline upload step multiple times), then each batch of uploaded steps will appear in reverse order in the Buildkite interface, such as the **Pipeline** view (in the sidebar) or **Table** view of the [new build page](/docs/pipelines/build-page), as well as the **Jobs** view of the classic build page, since the upload command inserts its steps immediately after the upload step.
