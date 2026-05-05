@@ -66,13 +66,13 @@ See how [Hasura.io](https://hasura.io) used [dynamic templates and pipelines](ht
 
 ## When to use dynamic pipelines
 
-Buildkite Pipelines supports several approaches to varying what runs in a build, ranging from fully static configuration through to fully dynamic step generation. The right approach depends on how much the build needs to change based on runtime information.
+Buildkite Pipelines supports several approaches to varying what runs in a build, ranging from fully static configuration to fully dynamic step generation. The right approach depends on how much the steps need to change from one build to the next.
 
-- **Static YAML**: Use when the pipeline runs the same steps every time, with at most branch-level `if:` conditions for variation. This is the simplest approach and requires no scripting.
+- **Static YAML**: Use when the pipeline runs the same steps every time, with [`if` attribute](/docs/pipelines/configure/conditionals) expressions for variation (for example, based on branch, tag, or pull request state). This is the simplest approach and requires no scripting.
 
-- **Conditional step execution with `if_changed`**: Use when steps should only run when relevant files change. Add glob patterns to a step definition, and the Buildkite agent compares them against the Git diff at upload time, excluding steps where nothing matched. See [Using if_changed](/docs/pipelines/configure/dynamic-pipelines/if-changed) for agent version requirements and supported syntax.
+- **Conditional step execution with `if_changed`**: Use when steps should only run when relevant files change. Add glob patterns to a step definition, and the Buildkite agent compares them against the Git diff at upload time, marking unmatched steps as skipped in the build. See [Using if_changed](/docs/pipelines/configure/dynamic-pipelines/if-changed) for agent version requirements and supported syntax.
 
-- **Dynamic generation**: Use when the steps themselves need to change based on runtime information. A generator script runs as a build step, looks at whatever context it needs (such as file changes, dependency graphs, API responses, or shared configuration), and uploads the right steps for that specific build. This is the most flexible approach.
+- **Dynamic generation**: Use when the steps themselves need to be constructed at build time. A generator script runs as a build step, inspects whatever context it needs (such as file changes, dependency graphs, API responses, or shared configuration), and uploads the appropriate steps for that specific build. This is the most flexible approach.
 
 ## Buildkite SDK
 
