@@ -32,7 +32,7 @@ To learn more, see the [Clusters overview](/docs/pipelines/security/clusters).
 
 ## Dynamic pipeline
 
-Dynamic pipelines (pipeline upload) define their steps at runtime using scripts, giving you the flexibility to only run the steps relevant to particular code changes and workflows.
+Dynamic pipelines define their steps at runtime using scripts, giving you the flexibility to only run the steps relevant to particular code changes and workflows.
 
 Dynamic pipelines are helpful when you have a complex build process that requires different steps to execute based on runtime conditions, such as the branch, the environment, or the results of previous steps.
 
