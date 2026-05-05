@@ -72,8 +72,6 @@ Buildkite Pipelines supports several approaches to varying what runs in a build,
 
 - **Conditional step execution with `if_changed`**: Use when steps should only run when relevant files change. Add glob patterns to a step definition, and the Buildkite agent compares them against the Git diff at upload time, excluding steps where nothing matched. See [Using if_changed](/docs/pipelines/configure/dynamic-pipelines/if-changed) for agent version requirements and supported syntax.
 
-- **Monorepo diff plugin**: Use when directory-level change detection is sufficient and you want declarative configuration without scripting. The [Monorepo diff plugin](https://buildkite.com/resources/plugins/buildkite-plugins/monorepo-diff-buildkite-plugin/) watches for changes within directories and triggers separate pipelines for each match, rather than composing steps within a single build. See [Working with monorepos](/docs/pipelines/best-practices/working-with-monorepos).
-
 - **Dynamic generation**: Use when the steps themselves need to change based on runtime information. A generator script runs as a build step, looks at whatever context it needs (such as file changes, dependency graphs, API responses, or shared configuration), and uploads the right steps for that specific build. This is the most flexible approach.
 
 ## Buildkite SDK
