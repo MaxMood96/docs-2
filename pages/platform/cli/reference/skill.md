@@ -46,7 +46,7 @@ bk skill add <name> [flags]
 
 | Flag | Description |
 | --- | --- |
-| `--agent=STRING` | Agent/harness to install for (claude or cursor). Auto-detected from .claude or .cursor by default. |
+| `--agent=STRING` | Agent/harness to install for (Claude or Cursor). Auto-detected from .claude or .cursor by default. |
 | `--debug` | Enable debug output for REST API calls |
 | `--force` | Overwrite an existing installed skill. |
 | `--global` | Install globally in your home directory instead of the current project. |
@@ -96,7 +96,7 @@ bk skill update [<name>] [flags]
 
 | Flag | Description |
 | --- | --- |
-| `--agent=STRING` | Agent/harness to update for (claude or cursor). Auto-detected from .claude or .cursor by default. |
+| `--agent=STRING` | Agent/harness to update for (Claude or Cursor). Auto-detected from .claude or .cursor by default. |
 | `--debug` | Enable debug output for REST API calls |
 | `--global` | Update the globally installed skill instead of the current project. |
 | `--path=STRING` | Custom skills directory to update, for agents such as Amp or Pi. |
@@ -137,7 +137,7 @@ bk skill delete <name> [flags]
 
 | Flag | Description |
 | --- | --- |
-| `--agent=STRING` | Agent/harness to delete from (claude or cursor). Auto-detected from .claude or .cursor by default. |
+| `--agent=STRING` | Agent/harness to delete from (Claude or Cursor). Auto-detected from .claude or .cursor by default. |
 | `--debug` | Enable debug output for REST API calls |
 | `--global` | Delete the globally installed skill instead of the current project. |
 | `--path=STRING` | Custom skills directory to delete from, for agents such as Amp or Pi. |
