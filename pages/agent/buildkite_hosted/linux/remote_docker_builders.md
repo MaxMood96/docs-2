@@ -78,7 +78,7 @@ The `my-image:latest` image will be built on the Buildkite hosted agent.
 
 ### Use Buildx and its default local builder
 
-Using Buildx and its default local builder (with the [`docker buildx use` command](https://docs.docker.com/reference/cli/docker/buildx/use/)) and then a Buildx-based command such as [`docker buildx build`](https://docs.docker.com/reference/cli/docker/buildx/build/) or [`docker buildx bake`](https://docs.docker.com/reference/cli/docker/buildx/bake/), also results in the Docker image being built on the Buildkite hosted agent.
+Using Buildx and its default local builder (with the [`docker buildx use` command](https://docs.docker.com/reference/cli/docker/buildx/use/)) and then a Buildx-based command such as [`docker buildx build`](https://docs.docker.com/reference/cli/docker/buildx/build/) or [`docker buildx bake`](https://docs.docker.com/reference/cli/docker/buildx/bake/) also results in the Docker image being built on the Buildkite hosted agent.
 
 For example, with `docker buildx build`:
 
@@ -92,7 +92,7 @@ steps:
 
 The `my-image:latest` image will also be built on the Buildkite hosted agent.
 
-The same applies to [`docker buildx bake`](https://docs.docker.com/reference/cli/docker/buildx/bake/), which uses the active Buildx builder in the same way:
+This also applies to [`docker buildx bake`](https://docs.docker.com/reference/cli/docker/buildx/bake/), which uses the active Buildx builder in the same way:
 
 ```yaml
 steps:
