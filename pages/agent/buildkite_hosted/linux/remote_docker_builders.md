@@ -9,8 +9,6 @@ _Remote Docker builders_ are dedicated machines available to [Buildkite hosted a
 
 When using the remote Docker builders feature, Docker image builds within your pipeline are directed to and run on an external [builder service](https://docs.docker.com/build/builders/) (the remote Docker builder), rather than being run on the Buildkite hosted agent instance itself. While the agent orchestrates and streams the build configuration to this remote builder service, the builder service itself builds the images and returns the completed images and metadata to the job that initiated the build on your agent. These completed images are also stored in your [container cache volumes](/docs/agent/buildkite-hosted/cache-volumes#container-cache-volumes), if you've enabled this feature. Learn more about this in [Step-by-step remote Docker builder process](#step-by-step-remote-docker-builder-process).
 
-This routing is achieved by the Buildkite hosted agent, which comes pre-configured with a [Buildx](https://docs.docker.com/build/concepts/overview/#buildx) builder named `in-runner-builder` set as the agent's active builder. Any Buildx-based command—including `docker build` (when [BuildKit](https://docs.docker.com/build/concepts/overview/#buildkit) is enabled, which is the default), `docker buildx build`, and `docker buildx bake`—uses this active builder, and therefore runs on the remote builder service. You can verify this by running `docker buildx ls` in any pipeline step on a Buildkite hosted agent: the builder marked with an asterisk (`*`) is the active one. Learn more about how to override this behavior in [Building Docker images on the Buildkite hosted agent](#building-docker-images-on-the-buildkite-hosted-agent).
-
 The remote builder service also maintains a [cache](https://docs.docker.com/build/cache/) of its built image layers (stored in the builder service's local file system, and in your [container cache volumes](/docs/agent/buildkite-hosted/cache-volumes#container-cache-volumes)). Images already stored in this local file system usually don't need to be re-built upon a subsequent build, and any images in your container cache volumes can be pulled to jobs requesting them, which in turn, speeds up your overall pipeline builds, since your Buildkite hosted agents running these pipelines are free to build the rest of your pipeline and conduct other work.
 
 When using remote Docker builders, your first few pipeline builds will typically require more time to complete. However, once the required layers and their images have been built, any subsequent pipeline builds are completed much more rapidly. Learn more about how remote Docker builders improve the speed and performance of your of your pipeline builds in [Benefits of using remote Docker builders](#benefits-of-using-remote-docker-builders).
@@ -114,25 +112,6 @@ steps:
     command: |
       docker buildx bake --file docker-bake.hcl
 ```
-
-## Verifying which builder is in use
-
-If a Docker image build appears to run on the Buildkite hosted agent itself (for example, the build output shows `docker:default` rather than `building with "in-runner-builder" instance using remote driver`), you can confirm which builder Buildx is using by running `docker buildx ls` in the affected step:
-
-```yaml
-steps:
-  - label: "\:mag\: List Buildx builders"
-    command: |
-      docker buildx ls
-```
-
-The builder marked with an asterisk (`*`) is the active one. On a Buildkite hosted agent with remote Docker builders enabled, this should be `in-runner-builder`. If `default` is the active builder instead, the most common causes are:
-
-- A `docker buildx use default` command earlier in the step, in a sourced script, or in a hook.
-- A `BUILDX_BUILDER` environment variable set to `default` (or any other non-remote builder) at the pipeline, step, or environment-hook level.
-- A [`DOCKER_BUILDKIT=0`](#building-docker-images-on-the-buildkite-hosted-agent-disable-buildkit) environment variable, which disables BuildKit entirely and routes `docker build` to the agent's local Docker daemon.
-
-To confirm, run `env | grep -E 'BUILDX|DOCKER_BUILDKIT'` near the start of the step and review any sourced scripts for `docker buildx use` calls.
 
 ## Additional volumes
 
