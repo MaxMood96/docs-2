@@ -1,4 +1,4 @@
-# Dynamic pipelines (pipeline upload)
+# Dynamic pipelines
 
 When your source code projects are built with Buildkite Pipelines, you can write scripts in the same language as your source code, or another suitable language, that generate new Buildkite pipeline steps (in either YAML or JSON format), which you can then upload to the same pipeline using the [pipeline upload step](/docs/pipelines/configure/defining-steps#step-defaults-pipeline-dot-yml-file). These additional _dynamically generated_ pipeline steps are run on the same Buildkite agent, as part of the same pipeline build, and will appear as their own steps in your pipeline builds. This provides you with the flexibility to structure your pipelines however you require.
 

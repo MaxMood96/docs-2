@@ -463,7 +463,7 @@
               path: "pipelines/configure/step-types/trigger-step"
             - name: "Group step"
               path: "pipelines/configure/step-types/group-step"
-        - name: "Dynamic pipelines (pipeline upload)"
+        - name: "Dynamic pipelines"
           children:
             - name: "Overview"
               path: "pipelines/configure/dynamic-pipelines"
